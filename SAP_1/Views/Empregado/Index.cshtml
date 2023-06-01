@@ -1,0 +1,43 @@
+﻿@model ICollection<SAP_1.Models.Empregado>
+
+@{
+    ViewData["Title"] = "Empregados";
+}
+
+<h1>Empregados</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Criar">Criar novo Empregado</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome do empregado</th>
+        <th>Id Departamento</th>
+        <th>Id Gerente</th>
+        <th>Ativo</th>
+        <th>Comissao</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IdEmpregado)</td>
+            <td>@Html.DisplayFor(modelItem => item.NmEmpregado)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdDepartamento)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdGerente)</td>
+            <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Comissao)</td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Editar"  asp-route-idEmpregado="@item.IdEmpregado">Editar</a>
+                    <a class="btn btn-secondary" asp-action="Detalhar"  asp-route-idEmpregado="@item.IdEmpregado">Detalhar</a>
+                    <a class="btn btn-danger" asp-action="Remover"  asp-route-idEmpregado="@item.IdEmpregado">Remover</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

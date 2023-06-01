@@ -1,0 +1,34 @@
+﻿@model SAP_1.Models.Empregado
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.IdEmpregado)</th>
+        <th>@Html.DisplayNameFor(model => model.IniciaisEmpregado)</th>
+        <th>@Html.DisplayNameFor(model => model.NmEmpregado)</th>
+        <th>@Html.DisplayNameFor(model => model.IdGerente)</th>
+        <th>@Html.DisplayNameFor(model => model.IdDepartamento)</th>
+        <th>@Html.DisplayNameFor(model => model.DsCargo)</th>
+        <th>@Html.DisplayNameFor(model => model.DtNascimento)</th>
+        <th>@Html.DisplayNameFor(model => model.Salario)</th>
+        <th>@Html.DisplayNameFor(model => model.Comissao)</th>
+        <th>@Html.DisplayNameFor(model => model.FgAtivo)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>@Html.DisplayFor(modelItem => @Model.IdEmpregado)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.IniciaisEmpregado)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.NmEmpregado)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.IdGerente)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.IdDepartamento)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.DsCargo)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.DtNascimento)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.Salario)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.Comissao)</th>
+        <th>@Html.DisplayFor(modelItem => @Model.FgAtivo)</th>
+    </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-danger" asp-action="Index">Voltar</a>

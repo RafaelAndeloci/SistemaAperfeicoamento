@@ -1,0 +1,29 @@
+﻿@model SAP_1.Models.Empregado
+@{
+    ViewData["Title"] = "Empregados";
+}
+
+<h1>Empregado (@Model.IdEmpregado)</h1>
+
+<p>
+    @Model.IniciaisEmpregado<br />
+    @Model.NmEmpregado<br />
+</p>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <form asp-action="Remover">
+                    <input type="hidden" asp-for="IdEmpregado" class="form-control" />
+                    <input type="hidden" asp-for="IdGerente" class="form-control" />
+                    <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
+                </form>
+
+                <form asp-action="Index">
+                    <input type="submit" value="Cancelar" class="btn btn-primary" />
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

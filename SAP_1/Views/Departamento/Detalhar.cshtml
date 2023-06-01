@@ -1,0 +1,33 @@
+﻿@model (SAP_1.Models.Departamento depto, List<SAP_1.Models.Empregado> empregados)
+
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+<h1>Departamento (@Model.depto.NmDepartamento)</h1>
+
+<p>
+    @Model.depto.NmDepartamento<br />
+    @Model.depto.Localizacao<br />
+</p>
+
+@if (Model.empregados.Count() > 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.empregados.First().NmEmpregado)</th>
+            <th>@Html.DisplayNameFor(model => model.empregados.First().IdEmpregado)</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.empregados)
+        {
+            <tr>
+                <th>@Html.DisplayFor(modelItem => item.NmEmpregado)</th>
+                <th>@Html.DisplayFor(modelItem => item.IdEmpregado)</th>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

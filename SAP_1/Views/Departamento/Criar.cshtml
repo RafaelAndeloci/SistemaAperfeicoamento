@@ -1,0 +1,52 @@
+﻿@model SAP_1.Models.Departamento
+@{
+    ViewData["Title"] = "Novo Departamento";
+}
+
+<h1>Criar</h1>
+
+
+<h4>Departamento</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Criar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IdDepartamento" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NmDepartamento" class="control-label"></label>
+                <input asp-for="NmDepartamento" class="form-control" />
+                <span asp-validation-for="NmDepartamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" />
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdGerente" class="control-label"></label>
+                <input asp-for="IdGerente" class="form-control" required/>
+                <span asp-validation-for="IdGerente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Adicionar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-danger" asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!--            <div class="form-group">
+    <input type="hidden" asp-for="IdDepartamento" />
+</div>-->

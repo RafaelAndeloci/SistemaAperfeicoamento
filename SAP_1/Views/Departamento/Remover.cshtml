@@ -1,0 +1,31 @@
+﻿@model SAP_1.Models.Departamento
+@{
+    ViewData["Title"] = "Departamentos";
+}
+
+<h1>Departamento (@Model.IdDepartamento)</h1>
+
+<p>
+    @Model.NmDepartamento<br />
+    @Model.Localizacao<br />
+</p>
+
+<table class="table">
+    <tbody>
+    <tr>
+        <td>
+            <form asp-action="Remover">
+                <input type="hidden" asp-for="IdDepartamento" class="form-control" />
+                <input type="hidden" asp-for="IdGerente" class="form-control" />
+                <input type="hidden" asp-for="NmDepartamento" class="form-control" />
+                <input type="hidden" asp-for="Localizacao" class="form-control" />
+                <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
+            </form>
+
+            <form asp-action="Index">
+                <input type="submit" value="Cancelar" class="btn btn-primary" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
