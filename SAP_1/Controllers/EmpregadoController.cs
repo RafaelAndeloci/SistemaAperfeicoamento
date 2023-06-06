@@ -34,6 +34,11 @@ namespace SAP_1.Controllers
         [HttpPost]
         public IActionResult Criar(Empregado empregado)
         {
+            if (empregado.IdGerente == empregado.IdEmpregado)
+            {
+                ModelState.AddModelError("IdGerente", "IdGerente não pode ser igual ao IdEmpregado.");
+                return View(empregado);
+            }
             _service.Create(empregado);
             return RedirectToAction("Index");
         }
@@ -48,7 +53,15 @@ namespace SAP_1.Controllers
         [HttpPost]
         public IActionResult Remover(Empregado empregado)
         {
-            _service.Delete(empregado);
+            try
+            {
+                _service.Delete(empregado);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("IdEmpregado", "O empregado não pode ser removido pois ele é gerente de um departamento.");
+                
+            }
             return RedirectToAction("Index");
         }
 

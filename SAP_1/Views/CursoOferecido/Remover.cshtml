@@ -1,0 +1,28 @@
+﻿@model SAP_1.Models.Curso
+@{
+    ViewData["Title"] = "Curso";
+}
+
+<h1>@ViewData["Title"] (@Model.IdCurso)</h1>
+
+<p>
+    @Model.DsCurso<br />
+    @Model.Categoria<br />
+</p>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>
+                <form asp-action="Remover">
+                    <input type="hidden" asp-for="IdCurso" class="form-control" />
+                    <input type="hidden" asp-for="DsCurso" class="form-control" />
+                    <input type="hidden" asp-for="Categoria" class="form-control" />
+                    <input type="hidden" asp-for="Duracao" class="form-control" />
+                    <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
+                </form>
+                <a class="btn btn-primary" asp-action="Index">Cancelar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

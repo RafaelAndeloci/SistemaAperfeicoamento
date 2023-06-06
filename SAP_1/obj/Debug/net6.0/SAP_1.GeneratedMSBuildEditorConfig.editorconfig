@@ -16,6 +16,46 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\rafael.goncalves\source\repos\SAP_1\SAP_1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/CursoOferecido/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29PZmVyZWNpZG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/CursoOferecido/Detalhar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29PZmVyZWNpZG9cRGV0YWxoYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/CursoOferecido/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29PZmVyZWNpZG9cRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/CursoOferecido/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29PZmVyZWNpZG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/CursoOferecido/Remover.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29PZmVyZWNpZG9cUmVtb3Zlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Curso/Criar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cQ3JpYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Curso/Detalhar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cRGV0YWxoYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Curso/Editar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cRWRpdGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Curso/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Curso/Remover.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cUmVtb3Zlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/rafael.goncalves/source/repos/SAP_1/SAP_1/Views/Departamento/Criar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVwYXJ0YW1lbnRvXENyaWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

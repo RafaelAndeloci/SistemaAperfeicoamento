@@ -12,8 +12,10 @@ builder.Services.AddDbContext<AcademicoContext>(
         builder.Configuration.GetConnectionString("AcademicoDatabase")));
 
 
-builder.Services.AddScoped<IDepartamentoService, DBDepartamentoContext>();
+builder.Services.AddScoped<IDepartamentoService, DBDepartamentosContext>();
 builder.Services.AddScoped<IEmpregadoService, DBEmpregadosContext>();
+builder.Services.AddScoped<ICursoService, DbCursosContext>();
+builder.Services.AddScoped<ICursoOferecido, DbCursosOferecidosContext>();
 
 var app = builder.Build();
 

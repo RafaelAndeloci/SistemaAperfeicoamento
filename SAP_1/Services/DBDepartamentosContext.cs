@@ -2,11 +2,11 @@
 
 namespace SAP_1.Services
 {
-    public class DBDepartamentoContext : IDepartamentoService
+    public class DBDepartamentosContext : IDepartamentoService
     {
         private AcademicoContext _context;
 
-        public DBDepartamentoContext(AcademicoContext context)
+        public DBDepartamentosContext(AcademicoContext context)
         {
             _context = context;
         }

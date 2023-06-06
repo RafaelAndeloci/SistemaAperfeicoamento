@@ -2,7 +2,7 @@
 {
     public interface IService<T> where T : class
     {
-        public void Create(T empregado);
+        public void Create(T obj);
         public void Update(T obj);
         public void Delete(T obj);
         public ICollection<T> FindAll();

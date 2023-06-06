@@ -1,0 +1,34 @@
+﻿@model ICollection<SAP_1.Models.CursosOferecido>
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Data de inicio</th>
+        <th>Localização</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IdCurso)</td>
+            <td>@Html.DisplayFor(modelItem => item.DtInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.Localizacao)</td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Editar" asp-route-idCurso="@item.IdCurso">Editar</a>
+                    <a class="btn btn-secondary" asp-action="Detalhar" asp-route-idCurso="@item.IdCurso">Detalhar</a>
+                    <a class="btn btn-danger" asp-action="Remove" asp-route-idCurso="@item.IdCurso">Remover</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

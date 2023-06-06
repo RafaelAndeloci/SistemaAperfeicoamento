@@ -33,6 +33,11 @@ namespace SAP_1.Services
                     subordinado.IdGerente = null;
                 }
             }
+
+            if (FindDeptoSubordinados(empregado) != null)
+            {
+                
+            }
                 _context.TbEmpregados.Remove(empregado);
             _context.SaveChanges();
         }
@@ -47,6 +52,14 @@ namespace SAP_1.Services
             return _context.TbEmpregados
                 .Where(e => e.IdGerente == gerente.IdEmpregado)
                 .ToList();
+        }
+
+        public ICollection<Departamento> FindDeptoSubordinados(Empregado gerente)
+        {
+            return _context.TbDepartamentos
+                .Where(d => d.IdGerente == gerente.IdEmpregado)
+                .ToList();
+
         }
 
         public Empregado? Find(Empregado empregado)
