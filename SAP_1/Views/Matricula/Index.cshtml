@@ -1,0 +1,43 @@
+﻿@model ICollection<SAP_1.Models.Matricula>
+
+@{
+    ViewData["Title"] = "Matriculas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Criar">Criar nova matricula</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>IdCurso</th>
+        <th>DtInicio</th>
+        <th>IdParticipante</th>
+        <th>Avaliação</th>
+        <th>Ativo?</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.IdCurso)</td>
+            <td>@Html.DisplayFor(modelItem => item.DtInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdParticipante)</td>
+            <td>@Html.DisplayFor(modelItem => item.Avaliacao)</td>
+            <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>
+            
+            <td>
+                <a class="btn btn-secondary" asp-action="Editar" 
+                   asp-route-idCurso="@item.IdCurso" asp-route-dtInicio="@item.DtInicio" asp-route-idParticipante="@item.IdParticipante">Editar</a>
+                <a class="btn btn-danger" asp-action="Remover" 
+                   asp-route-idCurso="@item.IdCurso" asp-route-dtInicio="@item.DtInicio" asp-route-idParticipante="@item.IdParticipante">Remover</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

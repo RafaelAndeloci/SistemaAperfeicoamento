@@ -1,13 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SAP_1.Models;
-using SAP_1.Services;
+using SAP_1.Services.Interfaces;
 
 namespace SAP_1.Controllers
 {
     public class EmpregadoController : Controller
     {
         private IEmpregadoService _service;
+        private IDepartamentoService _deptoService;
+
+        private List<SelectListItem> GetGerentesListItem()
+        {
+            return _service.FindGerentes()
+                .Select(g => new SelectListItem()
+                {
+                    Value = g.IdEmpregado.ToString(),
+                    Text = g.NmEmpregado.ToString()
+                }).ToList();
+        }
+        private List<SelectListItem> GetDeptoListItem()
+        {
+            return _deptoService.FindAll()
+                .Select(d => new SelectListItem()
+                {
+                    Value = d.IdDepartamento.ToString(),
+                    Text = d.IdDepartamento.ToString()
+                }).ToList();
+        }
 
         private List<SelectListItem> _status = new()
         {
@@ -15,9 +35,10 @@ namespace SAP_1.Controllers
             new SelectListItem() { Value = "false", Text = "Desativado" }
         };
 
-    public EmpregadoController(IEmpregadoService service)
+    public EmpregadoController(IEmpregadoService service, IDepartamentoService deptoService)
         {
             _service = service;
+            _deptoService = deptoService;
         }
         public IActionResult Index()
         {
@@ -28,6 +49,8 @@ namespace SAP_1.Controllers
         [HttpGet]
         public IActionResult Criar()
         {
+            ViewBag.ListaGerentes = GetGerentesListItem();
+            ViewBag.ListaDepto = GetDeptoListItem();
             return View();
         }
 
@@ -53,15 +76,8 @@ namespace SAP_1.Controllers
         [HttpPost]
         public IActionResult Remover(Empregado empregado)
         {
-            try
-            {
-                _service.Delete(empregado);
-            }
-            catch (Exception e)
-            {
-                ModelState.AddModelError("IdEmpregado", "O empregado não pode ser removido pois ele é gerente de um departamento.");
-                
-            }
+            _service.Delete(empregado);
+
             return RedirectToAction("Index");
         }
 

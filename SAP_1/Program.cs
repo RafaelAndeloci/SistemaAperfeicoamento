@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SAP_1.Models;
 using SAP_1.Services;
+using SAP_1.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddScoped<IDepartamentoService, DBDepartamentosContext>();
 builder.Services.AddScoped<IEmpregadoService, DBEmpregadosContext>();
 builder.Services.AddScoped<ICursoService, DbCursosContext>();
 builder.Services.AddScoped<ICursoOferecido, DbCursosOferecidosContext>();
+builder.Services.AddScoped<IMatriculaService, DBMatriculasContext>();
 
 var app = builder.Build();
 

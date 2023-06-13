@@ -1,0 +1,29 @@
+﻿@model SAP_1.Models.Matricula
+@{
+    ViewData["Title"] = "Curso";
+}
+
+<h1>@ViewData["Title"] (@Model.IdCurso)</h1>
+
+<p>
+    @Model.IdCurso<br />
+    @Model.IdParticipante<br />
+</p>
+
+<table class="table">
+    <tbody>
+    <tr>
+        <td>
+            <form asp-action="Remover">
+                <input type="hidden" asp-for="IdCurso" class="form-control" />
+                <input type="hidden" asp-for="DtInicio" class="form-control" />
+                <input type="hidden" asp-for="IdParticipante" class="form-control" />
+                <input type="hidden" asp-for="Avaliacao" class="form-control" />
+                <input type="hidden" asp-for="FgAtivo" class="form-control" />
+                <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
+            </form>
+            <a class="btn btn-primary" asp-action="Index">Cancelar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>

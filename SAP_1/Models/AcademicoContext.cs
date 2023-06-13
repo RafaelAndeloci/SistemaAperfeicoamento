@@ -13,7 +13,7 @@ public partial class AcademicoContext : DbContext
 
     public virtual DbSet<Curso> TbCursos { get; set; }
 
-    public virtual DbSet<CursosOferecido> TbCursosOferecidos { get; set; }
+    public virtual DbSet<CursoOferecido> TbCursosOferecidos { get; set; }
 
     public virtual DbSet<Departamento> TbDepartamentos { get; set; }
 
@@ -34,7 +34,7 @@ public partial class AcademicoContext : DbContext
             entity.Property(e => e.Categoria).IsFixedLength();
         });
 
-        modelBuilder.Entity<CursosOferecido>(entity =>
+        modelBuilder.Entity<CursoOferecido>(entity =>
         {
             entity.HasKey(e => new { e.IdCurso, e.DtInicio }).HasName("pk_tb_cursos_oferecidos");
 
@@ -87,7 +87,7 @@ public partial class AcademicoContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_tb_matriculas_id_participante");
 
-            entity.HasOne(d => d.CursosOferecido).WithMany(p => p.TbMatriculas)
+            entity.HasOne(d => d.CursoOferecido).WithMany(p => p.TbMatriculas)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_tb_matriculas");
         });

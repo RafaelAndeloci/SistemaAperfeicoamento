@@ -1,9 +1,9 @@
-﻿@model SAP_1.Models.CursosOferecido
+﻿@model SAP_1.Models.CursoOferecido
 @{
     ViewData["Title"] = "Novo Curso";
 }
 
-<h1>Criar @ViewData["Title"]</h1>
+<h1>Oferecer @ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
@@ -22,8 +22,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdInstrutor" class="control-label"></label>
-                <input asp-for="IdInstrutor" class="form-control" />
-                <span asp-validation-for="IdInstrutor" class="text-danger"></span>
+                <select asp-for="IdInstrutor" class="form-control" asp-items="@ViewBag.ListaInstrutor"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Localizacao" class="control-label"></label>

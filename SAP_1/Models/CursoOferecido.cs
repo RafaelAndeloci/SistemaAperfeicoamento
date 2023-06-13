@@ -8,7 +8,7 @@ namespace SAP_1.Models;
 
 [PrimaryKey("IdCurso", "DtInicio")]
 [Table("tb_cursos_oferecidos")]
-public partial class CursosOferecido
+public partial class CursoOferecido
 {
     [Key]
     [Column("id_curso")]
@@ -39,6 +39,6 @@ public partial class CursosOferecido
     [InverseProperty("TbCursosOferecidos")]
     public virtual Empregado? IdInstrutorNavigation { get; set; }
 
-    [InverseProperty("CursosOferecido")]
+    [InverseProperty("CursoOferecido")]
     public virtual ICollection<Matricula> TbMatriculas { get; set; } = new List<Matricula>();
 }

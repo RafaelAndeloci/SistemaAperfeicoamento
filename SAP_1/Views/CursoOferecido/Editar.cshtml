@@ -1,38 +1,39 @@
-﻿@model SAP_1.Models.Curso
+﻿@model SAP_1.Models.CursoOferecido
 
 @{
     ViewData["Title"] = "Curso";
 }
 
 <h1>Id (@Model.IdCurso)</h1>
-<h2>Categoria (@Model.Categoria)</h2>
+<h2>Instrutor (@Model.IdInstrutor)</h2>
 
 <h4>Alterar</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Editar">
+        <form asp-action="Editar" asp-route-dtAntigo="@Model.DtInicio">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input type="hidden" asp-for="IdCurso" />
             </div>
             <div class="form-group">
-                <label asp-for="DsCurso" class="control-label"></label>
-                <input asp-for="DsCurso" class="form-control" />
-                <span asp-validation-for="DsCurso" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Categoria" class="control-label"></label>
-                <select asp-for="Categoria" class="form-control" asp-items="@ViewBag.CategoriaCurso"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duracao" class="control-label"></label>
-                <input asp-for="Duracao" class="form-control" />
-                <span asp-validation-for="Duracao" class="text-danger"></span>
+                <label asp-for="DtInicio" class="control-label"></label>
+                <input asp-for="DtInicio" class="form-control" />
+                <span asp-validation-for="DtInicio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FgAtivo" class="control-label"></label>
                 <select asp-for="FgAtivo" class="form-control" asp-items="@ViewBag.StatusCurso"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdInstrutor" class="control-label"></label>
+                <input asp-for="IdInstrutor" class="form-control" />
+                <span asp-validation-for="IdInstrutor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" />
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Atualizar" class="btn btn-primary" />

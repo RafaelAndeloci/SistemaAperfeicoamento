@@ -1,31 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SAP_1.Models;
-using SAP_1.Services;
+using SAP_1.Services.Interfaces;
 
 namespace SAP_1.Controllers
 {
     public class CursoOferecidoController : Controller
     {
         private ICursoOferecido _service;
-        private ICursoService _cursoService;
+        private IEmpregadoService _empregadoService;
         private List<SelectListItem> _status = new()
         {
             new SelectListItem() { Value = "true", Text = "Ativo"},
             new SelectListItem() { Value = "false", Text = "Desativado" }
         };
+        private List<SelectListItem> GetListaDeInstrutor()
+        {
+            return _empregadoService.FindAll()
+                .Select(g => new SelectListItem()
+                {
+                    Value = g.IdEmpregado.ToString(),
+                    Text = g.NmEmpregado.ToString()
+                }).ToList();
+        }
 
-
-        public CursoOferecidoController(ICursoOferecido service, ICursoService cursoService)
+        public CursoOferecidoController(
+            ICursoOferecido service,
+            IEmpregadoService empregadoService)
         {
             _service = service;
-            _cursoService = cursoService;
+            _empregadoService = empregadoService;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
-            List<CursosOferecido> cursos = _service.FindAll().ToList();
+            List<CursoOferecido> cursos = _service.FindAll().ToList();
             return View(cursos);
         }
 
@@ -33,11 +43,12 @@ namespace SAP_1.Controllers
         public IActionResult Create(string idCurso)
         {
             ViewBag.StatusCurso = _status;
-            return View(new CursosOferecido{ IdCurso = idCurso });
+            ViewBag.ListaInstrutor = GetListaDeInstrutor();
+            return View(new CursoOferecido{ IdCurso = idCurso });
         }
 
         [HttpPost]
-        public IActionResult Create(CursosOferecido curso)
+        public IActionResult Create(CursoOferecido curso)
         {
             _service.Create(curso);
             return RedirectToAction("Index");
@@ -46,37 +57,46 @@ namespace SAP_1.Controllers
         [HttpGet]
         public IActionResult Remove(string idCurso, DateTime dtInicio)
         {
-            CursosOferecido curso = _service.Find(new CursosOferecido { IdCurso = idCurso, DtInicio = dtInicio });
+            CursoOferecido curso = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = dtInicio });
             return View(curso);
         }
 
         [HttpPost]
-        public IActionResult Remove(CursosOferecido curso)
+        public IActionResult Remove(CursoOferecido curso)
         {
             _service.Delete(curso);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult Editar(string idCurso, DateTime dtInicio)
+        public IActionResult Editar(string idCurso, string dtInicio)
         {
+            DateTime data = DateTime.Parse(dtInicio);
             ViewBag.StatusCurso = _status;
-            CursosOferecido curso = _service.Find(new CursosOferecido { IdCurso = idCurso, DtInicio = dtInicio });
+            CursoOferecido curso = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = data });
             return View(curso);
         }
 
         [HttpPost]
-        public IActionResult Editar(CursosOferecido curso)
+        public IActionResult Editar(CursoOferecido curso, string idCurso, string dtAntigo)
         {
-            _service.Update(curso);
+            DateTime data = DateTime.Parse(dtAntigo);
+            CursoOferecido cursoARemover = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = data });
+
+
+            _service.Delete(cursoARemover);
+            _service.Create(curso);
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult Detalhar(string idCurso, DateTime dtInicio)
+        public IActionResult Matricula(string idCurso, string dtInicio)
         {
-            CursosOferecido curso = _service.Find(new CursosOferecido { IdCurso = idCurso, DtInicio = dtInicio });
-            return View(curso);
+            DateTime data = DateTime.Parse(dtInicio);
+            CursoOferecido curso = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = data });
+
+            return RedirectToAction("Index", "Matricula", curso);
         }
+        
     }
 }

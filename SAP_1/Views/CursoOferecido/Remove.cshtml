@@ -1,4 +1,4 @@
-﻿@model SAP_1.Models.Curso
+﻿@model SAP_1.Models.CursoOferecido
 @{
     ViewData["Title"] = "Curso";
 }
@@ -6,19 +6,20 @@
 <h1>@ViewData["Title"] (@Model.IdCurso)</h1>
 
 <p>
-    @Model.DsCurso<br />
-    @Model.Categoria<br />
+    @Model.IdInstrutor<br />
+    @Model.Localizacao<br />
 </p>
 
 <table class="table">
     <tbody>
         <tr>
             <td>
-                <form asp-action="Remover">
+                <form asp-action="Remove">
                     <input type="hidden" asp-for="IdCurso" class="form-control" />
-                    <input type="hidden" asp-for="DsCurso" class="form-control" />
-                    <input type="hidden" asp-for="Categoria" class="form-control" />
-                    <input type="hidden" asp-for="Duracao" class="form-control" />
+                    <input type="hidden" asp-for="DtInicio" class="form-control" />
+                    <input type="hidden" asp-for="IdInstrutor" class="form-control" />
+                    <input type="hidden" asp-for="Localizacao" class="form-control" />
+                    <input type="hidden" asp-for="FgAtivo" class="form-control" />
                     <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
                 </form>
                 <a class="btn btn-primary" asp-action="Index">Cancelar</a>

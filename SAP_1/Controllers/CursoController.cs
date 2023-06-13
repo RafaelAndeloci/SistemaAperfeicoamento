@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SAP_1.Models;
-using SAP_1.Services;
+using SAP_1.Services.Interfaces;
 
 namespace SAP_1.Controllers
 {

@@ -1,7 +1,7 @@
-﻿@model ICollection<SAP_1.Models.CursosOferecido>
+﻿@model ICollection<SAP_1.Models.CursoOferecido>
 
 @{
-    ViewData["Title"] = "Cursos";
+    ViewData["Title"] = "Cursos oferecidos";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -24,9 +24,8 @@
             <td>@Html.DisplayFor(modelItem => item.DtInicio)</td>
             <td>@Html.DisplayFor(modelItem => item.Localizacao)</td>
             <td>
-                <a class="btn btn-secondary" asp-action="Editar" asp-route-idCurso="@item.IdCurso">Editar</a>
-                    <a class="btn btn-secondary" asp-action="Detalhar" asp-route-idCurso="@item.IdCurso">Detalhar</a>
-                    <a class="btn btn-danger" asp-action="Remove" asp-route-idCurso="@item.IdCurso">Remover</a>
+                <a class="btn btn-secondary" asp-action="Editar" asp-route-idCurso="@item.IdCurso" asp-route-dtInicio="@item.DtInicio">Editar</a>
+                <a class="btn btn-danger" asp-action="Remove" asp-route-idCurso="@item.IdCurso" asp-route-dtInicio="@item.DtInicio">Remover</a>
             </td>
         </tr>
     }

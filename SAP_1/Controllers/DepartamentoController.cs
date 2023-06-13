@@ -1,16 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SAP_1.Services;
 using SAP_1.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SAP_1.Services.Interfaces;
 
 namespace SAP_1.Controllers
 {
     public class DepartamentoController : Controller
     {
         private IDepartamentoService _service;
+        private IEmpregadoService _empregadoService;
 
-        public DepartamentoController(IDepartamentoService service)
+        private List<SelectListItem> GetGerentesListItem()
+        {
+            return _empregadoService.FindGerentes()
+                .Select(g => new SelectListItem()
+                {
+                    Value = g.IdEmpregado.ToString(),
+                    Text = g.NmEmpregado.ToString()
+                }).ToList();
+        }
+
+        public DepartamentoController(IDepartamentoService service, IEmpregadoService empregadoService)
         {
             _service = service;
+            _empregadoService = empregadoService;
         }
 
         [HttpGet]
@@ -23,6 +36,8 @@ namespace SAP_1.Controllers
         [HttpGet]
         public IActionResult Criar()
         {
+            ViewBag.ListaGerentes = GetGerentesListItem();
+
             return View();
         }
 

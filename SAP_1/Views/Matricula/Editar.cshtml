@@ -1,0 +1,45 @@
+﻿@model SAP_1.Models.Matricula
+
+@{
+    ViewData["Title"] = "Matricula";
+}
+
+<h1>Id Curso(@Model.IdCurso)</h1>
+<h2>Participante (@Model.IdParticipante)</h2>
+
+<h4>Alterar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar" asp-route-dtAntigo="@Model.DtInicio">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="IdParticipante" />
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCurso" class="control-label"></label>
+                <select asp-for="IdCurso" class="form-control" asp-items="@ViewBag.ListaIdCurso"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtInicio" class="control-label"></label>
+                <select asp-for="DtInicio" class="form-control" asp-items="@ViewBag.ListaDtCurso"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="FgAtivo" class="control-label"></label>
+                <select asp-for="FgAtivo" class="form-control" asp-items="@ViewBag.Status"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Avaliacao" class="control-label"></label>
+                <input asp-for="Avaliacao" class="form-control" />
+                <span asp-validation-for="Avaliacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Atualizar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-danger" asp-action="Index">Voltar</a>
+</div>

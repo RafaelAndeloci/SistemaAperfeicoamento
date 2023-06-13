@@ -1,4 +1,5 @@
 ﻿using SAP_1.Models;
+using SAP_1.Services.Interfaces;
 
 namespace SAP_1.Services
 {
@@ -25,19 +26,40 @@ namespace SAP_1.Services
 
         public void Delete(Empregado empregado)
         {
-            if (FindSubordinados(empregado) != null)
+            var curso = FindCursoOferecido(empregado).ToList();
+            var sub = FindSubordinados(empregado).ToList();
+            var dep = FindDeptoSubordinados(empregado).ToList();
+            var mat = FindMatricula(empregado).ToList();
+
+            if (sub != null)
             {
-                List<Empregado> sub = FindSubordinados(empregado).ToList();
                 foreach (var subordinado in sub)
                 {
-                    subordinado.IdGerente = null;
+                    _context.TbEmpregados.Remove(subordinado);
+                }
+            }
+            if (dep != null)
+            {
+                foreach (var departamento in dep)
+                {
+                    _context.TbDepartamentos.Remove(departamento);
+                }
+            }
+            if (curso != null)
+            {
+                foreach (CursoOferecido cursin in curso)
+                {
+                    cursin.IdInstrutor = null;
+                }
+            }
+            if (mat != null)
+            {
+                foreach (var matricula in mat)
+                {
+                    _context.TbMatriculas.Remove(matricula);
                 }
             }
 
-            if (FindDeptoSubordinados(empregado) != null)
-            {
-                
-            }
                 _context.TbEmpregados.Remove(empregado);
             _context.SaveChanges();
         }
@@ -46,14 +68,33 @@ namespace SAP_1.Services
         {
             return _context.TbEmpregados.ToList();
         }
-        
         public ICollection<Empregado> FindSubordinados(Empregado gerente)
         {
             return _context.TbEmpregados
                 .Where(e => e.IdGerente == gerente.IdEmpregado)
                 .ToList();
         }
+        public ICollection<Empregado> FindGerentes()
+        {
+            List<Empregado> empregados = FindAll().ToList();
 
+            List<int> ids = new List<int>();
+
+            foreach (var empregado in empregados)
+            {
+                if (empregado.IdGerente.HasValue) ids.Add(empregado.IdGerente.Value);
+                
+            }
+            return _context.TbEmpregados.Where(e => ids.Contains(e.IdEmpregado)).ToList();
+        }
+        public ICollection<CursoOferecido> FindCursoOferecido(Empregado instrutor)
+        {
+            return _context.TbCursosOferecidos.Where(c => c.IdInstrutor == instrutor.IdEmpregado).ToList();
+        }
+        public ICollection<Matricula> FindMatricula(Empregado estudante)
+        {
+            return _context.TbMatriculas.Where(m => m.IdParticipante == estudante.IdEmpregado).ToList();
+        }
         public ICollection<Departamento> FindDeptoSubordinados(Empregado gerente)
         {
             return _context.TbDepartamentos
@@ -61,7 +102,6 @@ namespace SAP_1.Services
                 .ToList();
 
         }
-
         public Empregado? Find(Empregado empregado)
         {
             return _context.TbEmpregados.FirstOrDefault(e => 
