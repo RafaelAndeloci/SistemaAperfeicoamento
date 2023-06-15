@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"] (@Model.IdCurso)</h1>
 
 
-<table class="table">
+<table class="table table-dark table-hover">
     <thead>
     <tr>
         <th>@Html.DisplayNameFor(model => model.IdCurso)</th>
@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr class="table-light">
         <th>@Html.DisplayFor(modelItem => modelItem.IdCurso)</th>
         <th>@Html.DisplayFor(modelItem => modelItem.DsCurso)</th>
         <th>@Html.DisplayFor(modelItem => modelItem.Categoria)</th>

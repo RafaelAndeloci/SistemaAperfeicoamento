@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"]</h1>
 
 
-<table class="table">
+<table class="table table-dark table-hover">
     <thead>
     <tr>
         <th>Id</th>
@@ -19,7 +19,7 @@
     <tbody>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="table-light">
             <td>@Html.DisplayFor(modelItem => item.IdCurso)</td>
             <td>@Html.DisplayFor(modelItem => item.DtInicio)</td>
             <td>@Html.DisplayFor(modelItem => item.Localizacao)</td>

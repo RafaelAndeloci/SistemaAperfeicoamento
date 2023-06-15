@@ -51,6 +51,7 @@ namespace SAP_1.Controllers
         [HttpGet]
         public IActionResult Editar(int idDepartamento)
         {
+            ViewBag.ListaGerentes = GetGerentesListItem();
             Departamento departamento = _service.Find(new Departamento{ IdDepartamento = idDepartamento});
             return View(departamento);
         }

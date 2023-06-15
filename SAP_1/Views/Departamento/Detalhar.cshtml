@@ -13,7 +13,7 @@
 
 @if (Model.empregados.Count() > 0)
 {
-    <table class="table">
+    <table class="table table-dark table-hover">
         <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.empregados.First().NmEmpregado)</th>
@@ -23,7 +23,7 @@
         <tbody>
         @foreach (var item in Model.empregados)
         {
-            <tr>
+            <tr class="table-light">
                 <th>@Html.DisplayFor(modelItem => item.NmEmpregado)</th>
                 <th>@Html.DisplayFor(modelItem => item.IdEmpregado)</th>
             </tr>

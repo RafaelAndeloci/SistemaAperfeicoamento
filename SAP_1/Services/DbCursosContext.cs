@@ -26,6 +26,14 @@ namespace SAP_1.Services
 
         public void Delete(Curso curso)
         {
+            var cursosOferecidos = FindCursosSubordinados(curso);
+            if (cursosOferecidos != null)
+            {
+                foreach (var cursosOferecido in cursosOferecidos)
+                {
+                    _context.TbCursosOferecidos.Remove(cursosOferecido);
+                }
+            }
             _context.TbCursos.Remove(curso);
             _context.SaveChanges();
         }
@@ -38,6 +46,11 @@ namespace SAP_1.Services
         public Curso? Find(Curso curso)
         {
             return _context.TbCursos.FirstOrDefault(c => c.IdCurso == curso.IdCurso);
+        }
+
+        public ICollection<CursoOferecido> FindCursosSubordinados(Curso curso)
+        {
+            return _context.TbCursosOferecidos.Where(co => co.IdCurso == curso.IdCurso).ToList();
         }
     }
 }

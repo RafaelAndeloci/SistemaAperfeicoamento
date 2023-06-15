@@ -4,5 +4,6 @@ namespace SAP_1.Services.Interfaces
 {
     public interface ICursoService : IService<Curso>
     {
+        ICollection<CursoOferecido> FindCursosSubordinados(Curso curso);
     }
 }

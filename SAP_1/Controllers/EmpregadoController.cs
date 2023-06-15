@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SAP_1.Models;
 using SAP_1.Services.Interfaces;
 
@@ -10,6 +11,15 @@ namespace SAP_1.Controllers
         private IEmpregadoService _service;
         private IDepartamentoService _deptoService;
 
+        private List<SelectListItem> GetEmpregadosList()
+        {
+            return _service.FindAll()
+                .Select(g => new SelectListItem()
+                {
+                    Value = g.IdEmpregado.ToString(),
+                    Text = g.NmEmpregado.ToString()
+                }).ToList();
+        }
         private List<SelectListItem> GetGerentesListItem()
         {
             return _service.FindGerentes()
@@ -28,7 +38,6 @@ namespace SAP_1.Controllers
                     Text = d.IdDepartamento.ToString()
                 }).ToList();
         }
-
         private List<SelectListItem> _status = new()
         {
             new SelectListItem() { Value = "true", Text = "Ativo"},
@@ -51,6 +60,7 @@ namespace SAP_1.Controllers
         {
             ViewBag.ListaGerentes = GetGerentesListItem();
             ViewBag.ListaDepto = GetDeptoListItem();
+            ViewBag.ListaEmpregados = GetEmpregadosList();
             return View();
         }
 
@@ -85,6 +95,7 @@ namespace SAP_1.Controllers
         public IActionResult Editar(int idEmpregado)
         {
             ViewBag.StatusEmpregado = _status;
+            ViewBag.ListaDepto = GetDeptoListItem();
             Empregado empregado = _service.Find(new Empregado { IdEmpregado = idEmpregado });
             return View(empregado);
         }
@@ -100,6 +111,7 @@ namespace SAP_1.Controllers
         public IActionResult Detalhar(int idEmpregado)
         {
             Empregado empregado = _service.Find(new Empregado { IdEmpregado = idEmpregado });
+            ViewBag.IsGerente = _service.FindSubordinados(empregado);
             return View(empregado);
         }
     }

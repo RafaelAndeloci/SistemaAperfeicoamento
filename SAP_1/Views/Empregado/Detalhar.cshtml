@@ -1,6 +1,9 @@
 ﻿@model SAP_1.Models.Empregado
+@{
+    List<Empregado> subordinados = ViewBag.IsGerente;
+}
 
-<table class="table">
+<table class="table table-hover table-dark">
     <thead>
     <tr>
         <th>@Html.DisplayNameFor(model => model.IdEmpregado)</th>
@@ -13,10 +16,11 @@
         <th>@Html.DisplayNameFor(model => model.Salario)</th>
         <th>@Html.DisplayNameFor(model => model.Comissao)</th>
         <th>@Html.DisplayNameFor(model => model.FgAtivo)</th>
+        <th>É gerente?</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr class="table-light">
         <th>@Html.DisplayFor(modelItem => @Model.IdEmpregado)</th>
         <th>@Html.DisplayFor(modelItem => @Model.IniciaisEmpregado)</th>
         <th>@Html.DisplayFor(modelItem => @Model.NmEmpregado)</th>
@@ -27,6 +31,16 @@
         <th>@Html.DisplayFor(modelItem => @Model.Salario)</th>
         <th>@Html.DisplayFor(modelItem => @Model.Comissao)</th>
         <th>@Html.DisplayFor(modelItem => @Model.FgAtivo)</th>
+        @{
+            if (subordinados.Count() > 0)
+            {
+                <th>True</th>
+            }
+            else
+            {
+                <th>False</th>
+            }
+        }
     </tr>
     </tbody>
 </table>

@@ -10,7 +10,7 @@
     <a class="btn btn-primary" asp-action="Criar">Criar novo curso.</a>
 </p>
 
-<table class="table">
+<table class="table table-dark table-hover">
     <thead>
     <tr>
         <th>Id</th>
@@ -22,7 +22,7 @@
     <tbody>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="table-light">
             <td>@Html.DisplayFor(modelItem => item.IdCurso)</td>
             <td>@Html.DisplayFor(modelItem => item.Categoria)</td>
             <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>

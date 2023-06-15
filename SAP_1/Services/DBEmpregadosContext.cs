@@ -35,14 +35,14 @@ namespace SAP_1.Services
             {
                 foreach (var subordinado in sub)
                 {
-                    _context.TbEmpregados.Remove(subordinado);
+                    subordinado.IdGerente = null;
                 }
             }
             if (dep != null)
             {
                 foreach (var departamento in dep)
                 {
-                    _context.TbDepartamentos.Remove(departamento);
+                    departamento.IdGerente = null;
                 }
             }
             if (curso != null)
