@@ -15,7 +15,7 @@ public partial class Historico
     public int IdEmpregado { get; set; }
 
     [Key]
-    [Column("dt_inicio", TypeName = "date")]
+    [Column("dt_inicio", TypeName = "datetime")]
     public DateTime DtInicio { get; set; }
 
     [Column("ano_inicio")]
@@ -25,7 +25,7 @@ public partial class Historico
     public DateTime? DtFinal { get; set; }
 
     [Column("id_departamento")]
-    public int IdDepartamento { get; set; }
+    public int? IdDepartamento { get; set; }
 
     [Column("salario", TypeName = "numeric(7, 2)")]
     public decimal Salario { get; set; }

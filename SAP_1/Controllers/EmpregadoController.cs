@@ -11,7 +11,6 @@ namespace SAP_1.Controllers
     {
         private IEmpregadoService _service;
         private IDepartamentoService _deptoService;
-        private IHistoricoService _historicoService;
 
         private List<SelectListItem> GetEmpregadosList()
         {
@@ -46,14 +45,10 @@ namespace SAP_1.Controllers
             new SelectListItem() { Value = "false", Text = "Desativado" }
         };
 
-    public EmpregadoController(
-        IEmpregadoService service,
-        IDepartamentoService deptoService,
-        IHistoricoService historicoService)
+    public EmpregadoController(IEmpregadoService service, IDepartamentoService deptoService)
         {
             _service = service;
             _deptoService = deptoService;
-            _historicoService = historicoService;
         }
         public IActionResult Index()
         {
@@ -67,6 +62,7 @@ namespace SAP_1.Controllers
             ViewBag.ListaGerentes = GetGerentesListItem();
             ViewBag.ListaDepto = GetDeptoListItem();
             ViewBag.ListaEmpregados = GetEmpregadosList();
+            ViewBag.ListDeptoObject = _deptoService.FindAll().ToList();
             return View();
         }
 
@@ -102,7 +98,6 @@ namespace SAP_1.Controllers
         {
             ViewBag.StatusEmpregado = _status;
             ViewBag.ListaDepto = GetDeptoListItem();
-
             Empregado empregado = _service.Find(new Empregado { IdEmpregado = idEmpregado });
             var empvm = new EmpregadoViewModel { Empregado = empregado, Comentario = string.Empty};
             return View(empvm);
@@ -113,7 +108,7 @@ namespace SAP_1.Controllers
         {
             string? comentarios = empvm.Comentario;
             Empregado emp = empvm.Empregado;
-            _service.Update(emp, comentarios);
+                _service.Update(emp, comentarios);
             return RedirectToAction("Index");
         }
 

@@ -15,7 +15,15 @@ namespace SAP_1.Services
         public void Create(Empregado empregado)
         {
             _context.TbEmpregados.Add(empregado);
-            _context.TbHistoricos.Add(new Historico { IdEmpregado = empregado.IdEmpregado, DtInicio = DateTime.Now, IdDepartamento = empregado.IdDepartamento.Value });
+            _context.SaveChanges();
+            _context.TbHistoricos.Add(new Historico
+            {
+                IdEmpregado = empregado.IdEmpregado,
+                DtInicio = DateTime.Now,
+                Comentarios = "Criação do empregado",
+                IdDepartamento = empregado.IdDepartamento,
+                AnoInicio = DateTime.Now.Year
+            });
             _context.SaveChanges();
         }
 
@@ -115,13 +123,17 @@ namespace SAP_1.Services
         }
         public Historico PreencherHistorico(Empregado empregado, string comentarios)
         {
-            var hist = new Historico();
-            hist.IdEmpregado = empregado.IdEmpregado;
-            hist.DtInicio = DateTime.Now;
-            hist.IdDepartamento = empregado.IdDepartamento.Value;
-            hist.AnoInicio = DateTime.Now.Year;
-            hist.Comentarios = comentarios;
-            hist.FgAtivo = empregado.FgAtivo;
+            var hist = new Historico
+            {
+                IdEmpregado = empregado.IdEmpregado,
+                IdDepartamento = empregado.IdDepartamento.Value,
+                AnoInicio = DateTime.Now.Year,
+                Comentarios = comentarios,
+                FgAtivo = empregado.FgAtivo,
+                Salario = empregado.Salario,
+                DtInicio = DateTime.Now
+            };
+
 
             return hist;
         }
