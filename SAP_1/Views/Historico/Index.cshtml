@@ -1,0 +1,39 @@
+﻿@model ICollection<SAP_1.Models.Historico>
+
+@{
+    ViewData["Title"] = "Historicos";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr/>
+
+
+<table class="table table-dark table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Id do departamento</th>
+        <th>Ano de incio</th>
+        <th>Data final</th>
+        <th>Ativo?</th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="table-light">
+            <td>@Html.DisplayFor(modelItem => item.IdEmpregado)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdDepartamento)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdDepartamento)</td>
+            <td>@Html.DisplayFor(modelItem => item.AnoInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.DtFinal)</td>
+            <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Detalhes" asp-route-idEmpregado="@item.IdEmpregado" asp-route-dtInicio="@item.DtInicio">Detalhar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

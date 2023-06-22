@@ -1,0 +1,38 @@
+﻿@model List<SAP_1.Models.Historico>
+@{
+    List<Empregado> subordinados = ViewBag.IsGerente;
+}
+
+<table class="table table-dark table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>DtInicio</th>
+        <th>IdDepartamento</th>
+        <th>Ano Inicio</th>
+        <th>DataFinal</th>
+        <th>Salario</th>
+        <th>FgAtivo</th>
+        <th>Comentario</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="table-light">
+            <td>@Html.DisplayFor(modelItem => item.IdEmpregado)</td>
+            <td>@Html.DisplayFor(modelItem => item.DtInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.IdDepartamento)</td>
+            <td>@Html.DisplayFor(modelItem => item.AnoInicio)</td>
+            <td>@Html.DisplayFor(modelItem => item.DtFinal)</td>
+            <td>@Html.DisplayFor(modelItem => item.Salario)</td>
+            <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Comentarios)</td>
+        </tr>
+
+        
+    }
+    </tbody>
+</table>
+<a class="btn btn-danger" asp-action="Index">Voltar</a>
