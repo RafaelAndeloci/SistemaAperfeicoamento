@@ -16,8 +16,9 @@ builder.Services.AddDbContext<AcademicoContext>(
 builder.Services.AddScoped<IDepartamentoService, DBDepartamentosContext>();
 builder.Services.AddScoped<IEmpregadoService, DBEmpregadosContext>();
 builder.Services.AddScoped<ICursoService, DbCursosContext>();
-builder.Services.AddScoped<ICursoOferecido, DbCursosOferecidosContext>();
+builder.Services.AddScoped<ICursoOferecidoService, DbCursosOferecidosContext>();
 builder.Services.AddScoped<IMatriculaService, DBMatriculasContext>();
+builder.Services.AddScoped<IHistoricoService, DbHistoricoContext>();
 
 var app = builder.Build();
 

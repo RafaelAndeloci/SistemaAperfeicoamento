@@ -9,7 +9,7 @@ namespace SAP_1.Controllers
     {
         private IMatriculaService _service;
         private IEmpregadoService _empregadoService;
-        private ICursoOferecido _cursoService;
+        private ICursoOferecidoService _cursoService;
 
         private List<SelectListItem> _status = new()
         {
@@ -50,7 +50,7 @@ namespace SAP_1.Controllers
         public MatriculaController(
             IMatriculaService service,
             IEmpregadoService empregadoService,
-            ICursoOferecido cursoService)
+            ICursoOferecidoService cursoService)
         {
             _service = service;
             _empregadoService = empregadoService;

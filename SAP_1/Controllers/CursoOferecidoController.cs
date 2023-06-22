@@ -7,7 +7,7 @@ namespace SAP_1.Controllers
 {
     public class CursoOferecidoController : Controller
     {
-        private ICursoOferecido _service;
+        private ICursoOferecidoService _service;
         private IEmpregadoService _empregadoService;
         private List<SelectListItem> _status = new()
         {
@@ -25,7 +25,7 @@ namespace SAP_1.Controllers
         }
 
         public CursoOferecidoController(
-            ICursoOferecido service,
+            ICursoOferecidoService service,
             IEmpregadoService empregadoService)
         {
             _service = service;

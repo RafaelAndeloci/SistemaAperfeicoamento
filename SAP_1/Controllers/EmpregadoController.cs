@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SAP_1.Models;
 using SAP_1.Services.Interfaces;
+using SAP_1.ViewModels;
 
 namespace SAP_1.Controllers
 {
@@ -10,6 +11,7 @@ namespace SAP_1.Controllers
     {
         private IEmpregadoService _service;
         private IDepartamentoService _deptoService;
+        private IHistoricoService _historicoService;
 
         private List<SelectListItem> GetEmpregadosList()
         {
@@ -44,10 +46,14 @@ namespace SAP_1.Controllers
             new SelectListItem() { Value = "false", Text = "Desativado" }
         };
 
-    public EmpregadoController(IEmpregadoService service, IDepartamentoService deptoService)
+    public EmpregadoController(
+        IEmpregadoService service,
+        IDepartamentoService deptoService,
+        IHistoricoService historicoService)
         {
             _service = service;
             _deptoService = deptoService;
+            _historicoService = historicoService;
         }
         public IActionResult Index()
         {
@@ -96,14 +102,18 @@ namespace SAP_1.Controllers
         {
             ViewBag.StatusEmpregado = _status;
             ViewBag.ListaDepto = GetDeptoListItem();
+
             Empregado empregado = _service.Find(new Empregado { IdEmpregado = idEmpregado });
-            return View(empregado);
+            var empvm = new EmpregadoViewModel { Empregado = empregado, Comentario = string.Empty};
+            return View(empvm);
         }
 
         [HttpPost]
-        public IActionResult Editar(Empregado empregado)
+        public IActionResult Editar([Bind("Empregado", "Comentario")] EmpregadoViewModel empvm)
         {
-            _service.Update(empregado);
+            string? comentarios = empvm.Comentario;
+            Empregado emp = empvm.Empregado;
+            _service.Update(emp, comentarios);
             return RedirectToAction("Index");
         }
 

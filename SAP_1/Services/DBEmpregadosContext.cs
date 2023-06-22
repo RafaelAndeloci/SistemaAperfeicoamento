@@ -15,15 +15,22 @@ namespace SAP_1.Services
         public void Create(Empregado empregado)
         {
             _context.TbEmpregados.Add(empregado);
+            _context.TbHistoricos.Add(new Historico { IdEmpregado = empregado.IdEmpregado, DtInicio = DateTime.Now, IdDepartamento = empregado.IdDepartamento.Value });
             _context.SaveChanges();
         }
 
-        public void Update(Empregado empregado)
+        public void Update(Empregado obj)
         {
+            _context.TbEmpregados.Update(obj);
+            _context.SaveChanges();
+        }
+        public void Update(Empregado empregado, string comentarios)
+        {
+            Historico hist = PreencherHistorico(empregado, comentarios);
+            _context.TbHistoricos.Add(hist);
             _context.TbEmpregados.Update(empregado);
             _context.SaveChanges();
         }
-
         public void Delete(Empregado empregado)
         {
             var curso = FindCursoOferecido(empregado).ToList();
@@ -63,7 +70,6 @@ namespace SAP_1.Services
                 _context.TbEmpregados.Remove(empregado);
             _context.SaveChanges();
         }
-
         public ICollection<Empregado> FindAll()
         {
             return _context.TbEmpregados.ToList();
@@ -106,6 +112,18 @@ namespace SAP_1.Services
         {
             return _context.TbEmpregados.FirstOrDefault(e => 
                 e.IdEmpregado == empregado.IdEmpregado);
+        }
+        public Historico PreencherHistorico(Empregado empregado, string comentarios)
+        {
+            var hist = new Historico();
+            hist.IdEmpregado = empregado.IdEmpregado;
+            hist.DtInicio = DateTime.Now;
+            hist.IdDepartamento = empregado.IdDepartamento.Value;
+            hist.AnoInicio = DateTime.Now.Year;
+            hist.Comentarios = comentarios;
+            hist.FgAtivo = empregado.FgAtivo;
+
+            return hist;
         }
     }
 }
