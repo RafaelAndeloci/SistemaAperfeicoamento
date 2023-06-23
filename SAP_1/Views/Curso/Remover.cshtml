@@ -3,26 +3,29 @@
     ViewData["Title"] = "Curso";
 }
 
-<h1>@ViewData["Title"] (@Model.IdCurso)</h1>
-
-<p>
-    @Model.DsCurso<br />
-    @Model.Categoria<br />
-</p>
-
-<table class="table">
-    <tbody>
+<div class="text-center">
+    <h1>@ViewData["Title"] (@Model.IdCurso)</h1>
+    
+    <p style="font-weight: bold">
+        @Model.DsCurso<br />
+        @Model.Categoria<br />
+    </p>
+    <table class="table">
+        <tbody>
         <tr>
             <td>
                 <form asp-action="Remover">
-                    <input type="hidden" asp-for="IdCurso" class="form-control" />
-                    <input type="hidden" asp-for="DsCurso" class="form-control" />
-                    <input type="hidden" asp-for="Categoria" class="form-control" />
-                    <input type="hidden" asp-for="Duracao" class="form-control" />
-                    <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger" />
+                    <a class="btn btn-primary" asp-action="Index"><span class="fa-solid fa-arrow-left"></span></a>
+                    <input type="hidden" asp-for="IdCurso" class="form-control"/>
+                    <input type="hidden" asp-for="DsCurso" class="form-control"/>
+                    <input type="hidden" asp-for="Categoria" class="form-control"/>
+                    <input type="hidden" asp-for="Duracao" class="form-control"/>
+                    <input type="submit" value="Confirmar Remoção" class="btn btn-primary btn-danger"/>
                 </form>
-                <a class="btn btn-primary" asp-action="Index">Cancelar</a>
+                <br/>
+                
             </td>
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

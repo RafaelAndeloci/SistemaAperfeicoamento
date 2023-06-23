@@ -46,9 +46,9 @@
             <td>@Html.DisplayFor(modelItem => item.FgAtivo)</td>
             <td>@Html.DisplayFor(modelItem => item.Comissao)</td>
             <td>
-                <a class="btn btn-secondary" asp-action="Editar"  asp-route-idEmpregado="@item.IdEmpregado">Editar</a>
-                    <a class="btn btn-secondary" asp-action="Detalhar"  asp-route-idEmpregado="@item.IdEmpregado">Detalhar</a>
-                    <a class="btn btn-danger" asp-action="Remover"  asp-route-idEmpregado="@item.IdEmpregado">Remover</a>
+                <a class="btn btn-warning" asp-action="Editar"  asp-route-idEmpregado="@item.IdEmpregado"><span class="fa fa-pencil"></span></a>
+                    <a class="btn btn-info" asp-action="Detalhar"  asp-route-idEmpregado="@item.IdEmpregado"><span class="fa fa-search"></span></a>
+                    <a class="btn btn-danger" asp-action="Remover"  asp-route-idEmpregado="@item.IdEmpregado"><span class="fa fa-trash"></span></a>
             </td>
         </tr>
     }

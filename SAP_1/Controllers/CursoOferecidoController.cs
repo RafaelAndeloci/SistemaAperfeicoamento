@@ -55,9 +55,10 @@ namespace SAP_1.Controllers
         }
 
         [HttpGet]
-        public IActionResult Remove(string idCurso, DateTime dtInicio)
+        public IActionResult Remove(string idCurso, string dtInicio)
         {
-            CursoOferecido curso = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = dtInicio });
+            DateTime date = DateTime.Parse(dtInicio);
+            CursoOferecido curso = _service.Find(new CursoOferecido { IdCurso = idCurso, DtInicio = date });
             return View(curso);
         }
 

@@ -1,26 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Cursos";
 }
+
 <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap4.min.css"/>
 
 <div class="text-center">
     <h1>Cursos</h1>
+    <a class="btn btn-primary" asp-action="Criar">Criar novo Curso</a>
 </div>
-<div class="row justify-content-center">
+<div>
     <div class="col-auto">
         <table id="cursoTable" class="table table-striped table-bordered table-hover dt-responsive nowrap">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Categoria</th>
-                    <th>Duração</th>
-                    <th>Ativo</th>
-                </tr>
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Duração</th>
+                <th>Ativo</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
             </thead>
         </table>
     </div>
 </div>
+
+
 
 @section Scripts {
     <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
@@ -46,6 +53,22 @@
                     { "data": "categoria", "name": "Categoria", "autoWidth": true },
                     { "data": "duracao", "name": "Duração", "autoWidth": true },
                     { "data": "ativo", "name": "Ativo", "autoWidth": true },
+                    {
+                        "render" : function(data, type, full, meta) {
+                            return '<a class="btn btn-warning" href="/Curso/Editar?idCurso=' + full.idCurso + '"><span class="fa fa-pencil"></span></a>';
+                        }
+                    },
+                    {
+                        "data": null,
+                        "render": function(data, type, row) {
+                            return '<a class="btn btn-danger remover-contato" href="/Curso/Remover?idCurso=' + row.idCurso + '"><span class="fa fa-trash"></span></a>';
+                        }
+                    },
+                    {
+                        "render" : function (data, type, full, meta) {
+                            return '<a class="btn btn-success" href="/CursoOferecido/Create?idCurso=' + full.idCurso +'"><span class="fa-solid fa-graduation-cap"></span></a>';
+                        }
+                    }
                 ],
                 "language": {
                     url: "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
@@ -56,16 +79,4 @@
 }
 
 
-<!--<table class="table table-dark table-hover">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Categoria</th>
-        <th>Ativo</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
 
-    </tbody>
-</table>-->

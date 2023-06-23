@@ -75,6 +75,7 @@ namespace SAP_1.Controllers
         }
     }
 
+        
         [HttpGet]
         public IActionResult Criar()
         {
@@ -104,6 +105,14 @@ namespace SAP_1.Controllers
             return curso == null ? NotFound() : View(curso);
         }
 
+        [HttpPost]
+        public IActionResult ConfirmarRemocao(string idCurso)
+        {
+            var curso = _service.Find(new Curso { IdCurso = idCurso });
+            _service.Delete(curso);
+            return Json(new { success = true });
+        }
+        
         [HttpPost]
         public IActionResult Remover(Curso curso)
         {

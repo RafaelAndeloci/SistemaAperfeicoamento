@@ -29,9 +29,9 @@
                 <td>@Html.DisplayFor(modelItem => item.Localizacao)</td>
                 <td>@Html.DisplayFor(modelItem => item.IdGerente)</td>
                 <td>
-                    <a class="btn btn-secondary" asp-action="Editar" asp-route-idDepartamento="@item.IdDepartamento">Editar</a>
-                    <a class="btn btn-secondary" asp-action="Detalhar" asp-route-idDepartamento="@item.IdDepartamento">Detalhar</a>
-                    <a class="btn btn-danger" asp-action="Remover" asp-route-idDepartamento="@item.IdDepartamento">Remover</a>
+                    <a class="btn btn-warning" asp-action="Editar" asp-route-idDepartamento="@item.IdDepartamento"><span class="fa fa-pencil"></span></a>
+                    <a class="btn btn-info" asp-action="Detalhar" asp-route-idDepartamento="@item.IdDepartamento"><span class="fa fa-search"></span></a>
+                    <a class="btn btn-danger" asp-action="Remover" asp-route-idDepartamento="@item.IdDepartamento"><span class="fa fa-trash"></span></a>
                 </td>
             </tr>
         }

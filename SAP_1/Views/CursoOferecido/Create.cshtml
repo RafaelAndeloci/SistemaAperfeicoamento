@@ -12,12 +12,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdCurso" class="control-label"></label>
-                <input asp-for="IdCurso" class="form-control" />
+                <input asp-for="IdCurso" class="form-control disabled" />
                 <span asp-validation-for="IdCurso" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DtInicio" class="control-label"></label>
-                <input asp-for="DtInicio" class="form-control" />
+                <input type="date" asp-for="DtInicio" class="form-control" />
                 <span asp-validation-for="DtInicio" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,14 +34,11 @@
                 <select asp-for="FgAtivo" class="form-control" asp-items="@ViewBag.StatusCurso"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
+                <a class="btn btn-danger" asp-action="Index"><span class="fa-solid fa-arrow-left"></span></a>
+                <input type="submit" value="Adicionar" class="btn btn-primary"/>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a class="btn btn-danger" asp-action="Index">Voltar</a>
 </div>
 
 @section Scripts {
